@@ -32,6 +32,8 @@ class LeadResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('cnpj')
                     ->label('CNPJ')
+                    ->mask('99.999.999/9999-99')
+                    ->rule('cnpj')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('social_reason')
