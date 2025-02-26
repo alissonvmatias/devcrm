@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Permission;
 use App\Models\User;
-use App\Models\permission;
 use Illuminate\Auth\Access\Response;
 
 class PermissionPolicy
@@ -19,7 +19,7 @@ class PermissionPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, permission $permission): bool
+    public function view(User $user, User $model): bool
     {
         return $user->hasPermissionTo('permission_read');
     }
@@ -35,7 +35,7 @@ class PermissionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, permission $permission): bool
+    public function update(User $user, Permission $model): bool
     {
         return $user->hasPermissionTo('permission_update');
     }
@@ -43,7 +43,7 @@ class PermissionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, permission $permission): bool
+    public function delete(User $user, Permission $model): bool
     {
         return $user->hasPermissionTo('permission_delete');
     }

@@ -40,6 +40,8 @@ class LeadResource extends Resource
                     ->label('Razão Social')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('name_fantasy')
+                    ->label('Nome Fantasia'),
                 ]),
             Section::make('Dados para Contato')
             ->schema([
@@ -79,6 +81,8 @@ class LeadResource extends Resource
                 Tables\Columns\TextColumn::make('social_reason')
                     ->label('Razão Social')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('name_fantasy')
+                    ->label('Nome Fantasia'),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Tipo de Empresa')
                     ->searchable(),

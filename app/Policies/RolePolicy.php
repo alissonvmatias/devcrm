@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\role;
+use App\Models\Role; // Importando o modelo Role
 use Illuminate\Auth\Access\Response;
 
 class RolePolicy
@@ -19,7 +19,7 @@ class RolePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, role $role): bool
+    public function view(User $user, Role $role): bool // Alterado para Role
     {
         return $user->hasPermissionTo('role_read');
     }
@@ -35,7 +35,7 @@ class RolePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, role $role): bool
+    public function update(User $user, Role $role): bool 
     {
         return $user->hasPermissionTo('role_update');
     }
@@ -43,7 +43,7 @@ class RolePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, role $role): bool
+    public function delete(User $user, Role $role): bool 
     {
         return $user->hasPermissionTo('role_delete');
     }
