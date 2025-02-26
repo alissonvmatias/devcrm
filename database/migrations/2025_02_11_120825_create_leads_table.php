@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('cnpj');
             $table->string('social_reason');
+            $table->string('name_fantasy');
             $table->string('type');
             $table->string('name_manager');
             $table->string('telephone');

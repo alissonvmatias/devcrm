@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Section;
 
+use Filament\Forms\Components\Fieldset;
+
 
 class LeadResource extends Resource
 {
@@ -34,18 +36,19 @@ class LeadResource extends Resource
                     ->label('CNPJ')
                     ->mask('99.999.999/9999-99')
                     ->rule('cnpj')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('social_reason')
                     ->label('Razão Social')
-                    ->required()
                     ->maxLength(255),
-                ]),
+                Forms\Components\TextInput::make('name_fantasy')
+                    ->label('Nome Fantasia'), 
+                ])->columns(2),
             Section::make('Dados para Contato')
             ->schema([
                 Forms\Components\select::make('type')
                     ->label('Tipo de Empresa')
                     ->options(TypeLeadEnum::class)
+                    ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('name_manager')
                     ->label('Nome do Responsável')
@@ -56,16 +59,19 @@ class LeadResource extends Resource
                     ->tel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('observation')
-                    ->label('Observação')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('user_name')
-                    ->label('Parceiro')
-                    ->readonly()
-                    ->default(Auth::user() ? Auth::user()->name: 'Usuário desconhecido')
+                ])   
+                ->columns(2),
+                Fieldset::make('Observação')
+                ->schema([
+                    Forms\Components\RichEditor::make('Observação')
+                    ->label('Descreva um pouco sobre a empresa.')
                     ->maxLength(255),
                 ]),
+                Forms\Components\TextInput::make('user_name')
+                ->label('Parceiro')
+                ->readonly()
+                ->default(Auth::user() ? Auth::user()->name: 'Usuário desconhecido')
+                ->maxLength(255),
             ]);
     }
 
@@ -79,6 +85,9 @@ class LeadResource extends Resource
                 Tables\Columns\TextColumn::make('social_reason')
                     ->label('Razão Social')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('name_fantasy')
+                    ->upper()
+                    ->label('Nome Fantasia'),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Tipo de Empresa')
                     ->searchable(),
@@ -108,6 +117,7 @@ class LeadResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

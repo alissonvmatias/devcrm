@@ -10,6 +10,7 @@ enum TypeLeadEnum: string implements HasLabel
     case Retail = 'Varejo';
     case Wholesale = 'Atacado';
     case Industry = 'Industria';
+    case Service = 'Service';
     case Others = 'Outros';
     
     public function getLabel(): ?string
@@ -20,6 +21,7 @@ enum TypeLeadEnum: string implements HasLabel
             self::Retail => 'Varejo',
             self::Wholesale => 'Atacado',
             self::Industry => 'Indústria',
+            self::Service => 'Serviço',
             self::Others=>'Outros',
         };
     }
