@@ -6,6 +6,7 @@ use App\Enums\TypeLeadEnum;
 use App\Filament\Resources\LeadResource\Pages;
 use App\Filament\Resources\LeadResource\RelationManagers;
 use App\Models\Lead;
+use App\Models\TypeEnterprise;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,9 +16,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Section;
-
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Fieldset;
-
+use Filament\Forms\Form\Components\Select;
 
 class LeadResource extends Resource
 {
@@ -62,10 +63,11 @@ class LeadResource extends Resource
                 ])   
                 ->columns(2),
                 Fieldset::make('Observação')
-                ->schema([
-                    Forms\Components\RichEditor::make('Observação')
+                ->schema([  
+                    RichEditor::make('Observação')
                     ->label('Descreva um pouco sobre a empresa.')
-                    ->maxLength(255),
+                    ->columnSpanFull()
+                    ->nullable()
                 ]),
                 Forms\Components\TextInput::make('user_name')
                 ->label('Parceiro')
