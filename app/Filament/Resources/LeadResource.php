@@ -86,7 +86,6 @@ class LeadResource extends Resource
                     ->label('Razão Social')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name_fantasy')
-                    ->upper()
                     ->label('Nome Fantasia'),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Tipo de Empresa')
