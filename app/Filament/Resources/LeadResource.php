@@ -38,7 +38,6 @@ class LeadResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('social_reason')
                     ->label('Razão Social')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('name_fantasy')
                     ->label('Nome Fantasia'),
@@ -58,9 +57,8 @@ class LeadResource extends Resource
                     ->tel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('observation')
+                Forms\Components\RichEditor::make('observation')
                     ->label('Observação')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('user_name')
                     ->label('Parceiro')
@@ -112,6 +110,7 @@ class LeadResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

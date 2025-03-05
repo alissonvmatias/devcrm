@@ -6,7 +6,6 @@ use App\Filament\Resources\RoleResource\Pages;
 use App\Filament\Resources\RoleResource\RelationManagers;
 use App\Models\Role;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,10 +26,11 @@ class RoleResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Select::make('Permissions')
+                Forms\Components\Select::make('permissions')
                     ->multiple()
                     ->preload()
-                    ->relationship('permissions','name')
+                    ->searchable()
+                    ->relationship('permissions', 'name')
             ]);
     }
 

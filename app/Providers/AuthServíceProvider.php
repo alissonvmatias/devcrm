@@ -10,17 +10,17 @@ use App\Policies\UserPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * O mapeamento das políticas para o aplicativo.
+     * O mapa de políticas para o aplicativo.
      *
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // Registre suas políticas aqui, se necessário 
         User::class => UserPolicy::class,
     ];
 
     /**
-     * Registre os serviços de autenticação para o aplicativo.
+     * Registre os serviços de autenticação do aplicativo.
      *
      * @return void
      */
@@ -28,9 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // Aqui você pode registrar Gates ou permissões adicionais
-        Gate::define('view-admin', function (User $user) {
-            return $user->hasRole('admin');  // Por exemplo, checando role
-        });
+        // Aqui você pode definir gates de autenticação, caso necessário
+        // Exemplo:
+        // Gate::define('view-dashboard', function ($user) {
+        //     return $user->hasRole('admin');
+        // });
     }
 }

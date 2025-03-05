@@ -13,6 +13,6 @@ class UserLeadsScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('user_id', auth()->id());
+        //
     }
 }
