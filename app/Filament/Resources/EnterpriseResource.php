@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\TypeLeadEnum;
-use App\Filament\Resources\LeadResource\Pages;
-use App\Filament\Resources\LeadResource\RelationManagers;
-use App\Models\Lead;
-use App\Models\TypeEnterprise;
+use App\Filament\Resources\EnterpriseResource\Pages;
+use App\Filament\Resources\EnterpriseResource\RelationManagers;
+use App\Models\Enterprise;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,12 +17,12 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Form\Components\Select;
+use App\Enums\TypeLeadEnum;
 
-class LeadResource extends Resource
+class EnterpriseResource extends Resource
 {
-    protected static ?string $model = Lead::class;
-
-    protected static ?string $modelLabel = 'empresa';
+    protected static ?string $model = Enterprise::class;
+    protected static ?string $modelLabel = 'Empresa';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -64,7 +62,7 @@ class LeadResource extends Resource
                 ->columns(2),
                 Fieldset::make('Observação')
                 ->schema([  
-                    RichEditor::make('Observação')
+                    Forms\Components\TextInput::make('Observação')
                     ->label('Descreva um pouco sobre a empresa.')
                     ->columnSpanFull()
                     ->nullable()
@@ -137,9 +135,9 @@ class LeadResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLeads::route('/'),
-            'create' => Pages\CreateLead::route('/create'),
-            'edit' => Pages\EditLead::route('/{record}/edit'),
+            'index' => Pages\ListEnterprises::route('/'),
+            'create' => Pages\CreateEnterprise::route('/create'),
+            'edit' => Pages\EditEnterprise::route('/{record}/edit'),
         ];
     }
 }
