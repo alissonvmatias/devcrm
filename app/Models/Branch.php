@@ -15,4 +15,5 @@ class Branch extends Model
     {
         return $this->belongsToMany(Business::class, 'business_branch');
     }
+    
 }
