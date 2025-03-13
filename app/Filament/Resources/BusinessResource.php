@@ -28,33 +28,38 @@ class BusinessResource extends Resource
             Section::make('Dados do negócio')
             ->schema([
                 Forms\Components\TextInput::make('enterprise')
+                    ->label('Empresa')
                     ->maxLength(255),
                 Forms\Components\Select::make('branch')
+                    ->label('Filial')
                     ->options(BranchEnum::class)
                     ->required(),
                 Forms\Components\TextInput::make('name_bussiness')
+                    ->label('Nome do Negócio')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('solution')
+                    ->label('Soluçao')
                     ->required()
                     ->maxLength(255)
                     ])->columns(2),
                     Section::make('Dados do negócio')
                     ->schema([
                 Forms\Components\TextInput::make('price_ativation')
-                    ->required()
+                    ->label('Valor de ativação')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('price_month')
-                    ->required()
+                    ->label('Valor Mensal')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('comission_ativation')
-                    ->required()
+                    ->label('Comissão de ativação')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('comission_month')
-                    ->required()
+                    ->label('Comissão Mensal')
                     ->maxLength(255),
                     ])->columns(2),
                 Forms\Components\Select::make('priority')
+                    ->label('Prioridade')
                     ->required()
                     ->options(PriorityEnum::class),
             ]);
@@ -65,31 +70,32 @@ class BusinessResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('enterprise')
+                ->label('Empresa')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('branch')
+                ->label('Filial')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name_bussiness')
+                ->label('Nome do Negócio')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('solution')
+                ->label('Soluçao')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_ativation')
+                ->label('Valor de ativação')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_month')
+                ->label('Valor Mensal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('comission_ativation')
+                ->label('Comissão de ativação')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('comission_month')
+                ->label('Comissão Mensal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('priority')
+                    ->label('Prioridade')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

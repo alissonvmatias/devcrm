@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('branch');
             $table->string('name_bussiness');
             $table->string('solution');
-            $table->string('price_ativation')->notnull();
-            $table->string('price_month')->notnull();
-            $table->string('comission_ativation')->notnull();
-            $table->string('comission_month')->notnull();
+            $table->string('price_ativation');
+            $table->string('price_month');
+            $table->string('comission_ativation');
+            $table->string('comission_month');
             $table->string('priority');
             $table->timestamps();
         });
