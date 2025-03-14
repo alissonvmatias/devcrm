@@ -56,10 +56,9 @@ class UserSeeder extends Seeder
             'business_delete'
         ];
 
-        // Verificar se as permissões já existem, caso contrário, criar
         foreach ($permissions as $permission) {
             $perm = Permission::firstOrCreate(['name' => $permission]);
-            $adminRole->givePermissionTo($perm); // Associar permissão ao papel Admin
+            $adminRole->givePermissionTo($perm); 
         }
     }
 }
