@@ -12,7 +12,6 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Criar o usuário dev
         $user = User::create([
             'name' => 'Dev User',
             'email' => 'dev@gmail.com',
@@ -22,7 +21,6 @@ class UserSeeder extends Seeder
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
         $user->assignRole($adminRole);
 
-        // Adicionar as permissões
         $permissions = [
             'access_admin',
             'user_read',
