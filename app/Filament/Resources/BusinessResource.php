@@ -27,32 +27,33 @@ class BusinessResource extends Resource
         return $form->schema([
             Section::make('Dados do negócio')
             ->schema([
-                Forms\Components\TextInput::make('enterprise')
+                Forms\Components\Select::make('enterprise_id')
                     ->label('Empresa')
-                    ->maxLength(255),
-                Forms\Components\Select::make('branch')
-                    ->label('Filial')
-                    ->options(BranchEnum::class)
+                    ->relationship('enterprise', 'name_fantasy')
+                    ->required(),
+                Forms\Components\Select::make('branch_id')
+                    ->label('Unidade')
+                    ->relationship('branch', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('name_bussiness')
                     ->label('Nome do Negócio')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('solution')
-                    ->label('Soluçao')
+                    ->label('Solução')
                     ->required()
                     ->maxLength(255)
                     ])->columns(2),
                     Section::make('Dados do negócio')
                     ->schema([
                 Forms\Components\TextInput::make('price_ativation')
-                    ->label('Valor de ativação')
+                    ->label('Valor de Ativação')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('price_month')
                     ->label('Valor Mensal')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('comission_ativation')
-                    ->label('Comissão de ativação')
+                    ->label('Comissão de Ativação')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('comission_month')
                     ->label('Comissão Mensal')
@@ -61,7 +62,7 @@ class BusinessResource extends Resource
                 Forms\Components\Select::make('priority')
                     ->label('Prioridade')
                     ->required()
-                    ->options(PriorityEnum::class),
+                    ->options(PriorityEnum::class)
             ]);
     }
 
@@ -69,29 +70,30 @@ class BusinessResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('enterprise')
-                ->label('Empresa')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('branch')
-                ->label('Filial')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('enterprise.name_fantasy')
+                    ->label('Empresa')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('branch.name')
+                    ->label('Unidade')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name_bussiness')
-                ->label('Nome do Negócio')
+                    ->label('Nome do Negócio')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('solution')
-                ->label('Soluçao')
+                    ->label('Solução')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_ativation')
-                ->label('Valor de ativação')
+                    ->label('Valor de Ativação')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price_month')
-                ->label('Valor Mensal')
+                    ->label('Valor Mensal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('comission_ativation')
-                ->label('Comissão de ativação')
+                    ->label('Comissão de Ativação')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('comission_month')
-                ->label('Comissão Mensal')
+                    ->label('Comissão Mensal')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('priority')
                     ->label('Prioridade')

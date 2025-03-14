@@ -13,8 +13,8 @@ class Business extends Model
     use HasFactory;
 
     protected $fillable = [
-        'enterprise',
-        'branch',  
+        'enterprise_id',
+        'branch_id',  
         'name_bussiness',
         'solution',
         'price_ativation',
@@ -30,20 +30,13 @@ class Business extends Model
     }
 
 
-    public function branch(): BelongsToMany
+    public function enterprise()
     {
-        return $this->belongsToMany(Branch::class, 'business_branch',);
-    }
-    
-
-
-    public function enterprise(): BelongsToMany
-    {
-        return $this->belongsToMany(Enterprise::class, 'business_enterprise');
+        return $this->belongsTo(Enterprise::class);
     }
 
-    public function getStatusAttribute2($value)
+    public function branch()
     {
-        return BranchEnum::from($value);
+        return $this->belongsTo(Branch::class);
     }
 }

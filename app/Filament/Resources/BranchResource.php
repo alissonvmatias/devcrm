@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BranchResource extends Resource
 {
     protected static ?string $model = Branch::class;
-    protected static ?string $modelLabel = 'filial';
+    protected static ?string $modelLabel = 'unidade';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

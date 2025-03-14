@@ -11,9 +11,10 @@ class Branch extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function business(): BelongsToMany
+
+    public function BusinessTwo()
     {
-        return $this->belongsToMany(Business::class, 'business_branch');
+        return $this-> hasMany(Business::class);
     }
     
 }

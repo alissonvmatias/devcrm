@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -34,7 +35,7 @@ class BranchPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): bool
+    public function update(User $user, Branch $model): bool
     {
         return $user->hasPermissionTo('branch_update');
     }
@@ -42,7 +43,7 @@ class BranchPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, User $model): bool
+    public function delete(User $user, Branch $model): bool
     {
         return $user->hasPermissionTo('branch_delete');
     }

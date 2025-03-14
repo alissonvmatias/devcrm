@@ -1,5 +1,9 @@
+Migration Business
+
 <?php
 
+use App\Models\Branch;
+use App\Models\Enterprise;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-            $table->string('enterprise')->notnull();
-            $table->string('branch');
+            $table->foreignIdFor(Enterprise::class);
+            $table->foreignIdFor(Branch::class);
             $table->string('name_bussiness');
             $table->string('solution');
             $table->string('price_ativation');

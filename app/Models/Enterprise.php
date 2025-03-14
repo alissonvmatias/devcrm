@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use AnourValar\EloquentSerialize\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -21,8 +22,8 @@ class Enterprise extends Model
         return TypeLeadEnum::from($value);
     }
 
-    public function Business(): BelongsToMany
+    public function Business()
     {
-        return $this->belongsToMany(Business::class, 'business_enterprise');
+        return $this->  hasMany(Business::class);
     }
 }
