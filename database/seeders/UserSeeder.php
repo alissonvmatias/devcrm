@@ -46,6 +46,14 @@ class UserSeeder extends Seeder
             'typeenterprise_update',
             'typeenterprise_delete',
             'typeenterprise_create',
+            'branch_read',
+            'branch_view',
+            'branch_delete',
+            'branch_update',
+            'business_read',
+            'business_update',
+            'business_view',
+            'business_delete'
         ];
 
         // Verificar se as permissões já existem, caso contrário, criar
