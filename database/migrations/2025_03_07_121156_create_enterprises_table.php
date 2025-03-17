@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Enterprise;
+use App\Models\TypeEnterprise;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +18,7 @@ return new class extends Migration
             $table->string('cnpj');
             $table->string('social_reason');
             $table->string('name_fantasy');
-            $table->string('type');
+            $table->foreignIdFor(TypeEnterprise::class);
             $table->string('name_manager');
             $table->string('telephone');
             $table->string('observationn')->nullable();

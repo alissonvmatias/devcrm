@@ -20,6 +20,8 @@ class BusinessResource extends Resource
 {
     protected static ?string $model = Business::class;
 
+    protected static ?string $modelLabel = 'negócio';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

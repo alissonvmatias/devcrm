@@ -22,7 +22,8 @@ use App\Enums\TypeLeadEnum;
 class EnterpriseResource extends Resource
 {
     protected static ?string $model = Enterprise::class;
-    protected static ?string $modelLabel = 'Empresa';
+
+    protected static ?string $modelLabel = 'empresa';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -44,9 +45,9 @@ class EnterpriseResource extends Resource
                 ])->columns(2),
             Section::make('Dados para Contato')
             ->schema([
-                Forms\Components\select::make('type')
-                    ->label('Tipo de Empresa')
-                    ->options(TypeLeadEnum::class)
+                Forms\Components\Select::make('type_enterprise_id')
+                    ->relationship('typeEnterprise', 'TypeEnterprise')
+                    ->preload()
                     ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('name_manager')
@@ -62,7 +63,7 @@ class EnterpriseResource extends Resource
                 ->columns(2),
                 Fieldset::make('Observação')
                 ->schema([  
-                    Forms\Components\TextInput::make('Observação')
+                    Forms\Components\RichEditor::make('observationn')
                     ->label('Descreva um pouco sobre a empresa.')
                     ->columnSpanFull()
                     ->nullable()
@@ -80,36 +81,22 @@ class EnterpriseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('cnpj')
-                    ->label('CNPJ')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('social_reason')
-                    ->label('Razão Social')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name_fantasy')
-                    ->label('Nome Fantasia'),
-                Tables\Columns\TextColumn::make('type')
-                    ->label('Tipo de Empresa')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('typeEnterprise.TypeEnterprise')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name_manager')
-                    ->label('Nome do Responsável')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('telephone')
-                    ->label('Telefone')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('observation')
-                    ->label('Observação')
+                Tables\Columns\TextColumn::make('observationn')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('user_name')
-                    ->label('Nome do Responsável')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
