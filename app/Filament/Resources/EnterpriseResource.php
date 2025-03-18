@@ -23,7 +23,9 @@ class EnterpriseResource extends Resource
 {
     protected static ?string $model = Enterprise::class;
 
-    protected static ?string $modelLabel = 'empresa';
+    protected static ?string $modelLabel = 'indicação';
+
+    protected static ?string $pluralModelLabel = 'indicações';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -36,6 +38,7 @@ class EnterpriseResource extends Resource
                     ->label('CNPJ')
                     ->mask('99.999.999/9999-99')
                     ->rule('cnpj')
+                    ->unique(ignoreRecord:true)
                     ->maxLength(255),
                 Forms\Components\TextInput::make('social_reason')
                     ->label('Razão Social')
@@ -46,6 +49,7 @@ class EnterpriseResource extends Resource
             Section::make('Dados para Contato')
             ->schema([
                 Forms\Components\Select::make('type_enterprise_id')
+                    ->label('Segmento')
                     ->relationship('typeEnterprise', 'TypeEnterprise')
                     ->preload()
                     ->searchable()
@@ -81,21 +85,19 @@ class EnterpriseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('cnpj')
+                    ->label('CNPJ')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('social_reason')
+                    ->label('Razão Social')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name_fantasy')
+                    ->label('Nome Fantasia')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('typeEnterprise.TypeEnterprise')
+                    ->label('Segmento')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name_manager')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('telephone')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('observationn')
-                    ->limit(10)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('user_name')
+                    ->label('Nome do Responsável')
                     ->searchable(),
             ])
             ->filters([

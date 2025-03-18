@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TypeEnterpriseResource extends Resource
 {
-    protected static ?string $modelLabel = 'Tipo de Empresa';
+    protected static ?string $modelLabel = 'Segmento';
 
     protected static ?string $model = TypeEnterprise::class;
 
@@ -26,7 +26,7 @@ class TypeEnterpriseResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('TypeEnterprise')
-                    ->label('Tipo de Empresa')
+                    ->label('Segmento')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -37,7 +37,7 @@ class TypeEnterpriseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('TypeEnterprise')
-                    ->label('Tipo de Empresa')
+                    ->label('Segmentos')
                     ->searchable(),
             ])
             ->filters([
