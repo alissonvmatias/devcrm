@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBranch extends CreateRecord
 {
     protected static string $resource = BranchResource::class;
+
+    
+    //Essa função é para ao criar a filial ele voltar para as grids.
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -16,6 +16,8 @@ use App\Filament\Resources\UserResource\Pages\CreateUser;
 
 class UserResource extends Resource
 {
+    protected static ?string $modelLabel = 'Parceiro';
+
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -30,6 +32,7 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->label('E-mail')
+                    ->unique()
                     ->email()
                     ->required()
                     ->maxLength(255),

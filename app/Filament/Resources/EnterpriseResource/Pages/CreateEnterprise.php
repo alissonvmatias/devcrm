@@ -10,6 +10,7 @@ class CreateEnterprise extends CreateRecord
 {
     protected static string $resource = EnterpriseResource::class;
 
+//Essa função é para ao criar o empresa ele voltar para as grids.
     protected function getRedirectUrl(): string
 {
     return $this->getResource()::getUrl('index');

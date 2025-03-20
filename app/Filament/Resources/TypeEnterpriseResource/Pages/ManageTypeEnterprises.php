@@ -16,4 +16,6 @@ class ManageTypeEnterprises extends ManageRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    
 }
